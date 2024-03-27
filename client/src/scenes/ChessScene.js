@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import socket from "../../socket.js";
+import socket from "../socket.js";
 
 import create from "./create.js";
 import preload from "./preload.js";
@@ -8,7 +8,7 @@ import update from "./update.js";
 const ChessScene = new Phaser.Scene();
 
 const gameState = {
-  gameNumber: null,
+  gameCode: null,
   playerMove: true,
   currentPosition: 8,
   validMoves: [],
@@ -25,10 +25,12 @@ ChessScene.create = create.bind(ChessScene, gameState);
 ChessScene.update = update.bind(ChessScene, gameState);
 ChessScene.timer = null;
 
+// Socket events to manipulate gameState
 socket.on("ready", (payload) => {
-  gameState.gameNumber = payload.gameNumber;
+  gameState.gameCode = payload.gameCode;
   gameState.playerMove = payload.playerMove;
 
+  // Setup timer
   gameState.loader = 0;
   ChessScene.timer = setInterval(() => {
     if (gameState.loader === 30) {
@@ -44,6 +46,7 @@ socket.on("opponent-moved", (moveTo) => {
   gameState.moveTo = moveTo;
   gameState.moving = true;
 
+  // Restart timer
   clearInterval(ChessScene?.timer);
   gameState.loader = 0;
   ChessScene.timer = setInterval(() => {

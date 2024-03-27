@@ -1,4 +1,4 @@
-import Phaser from "phaser";
+import Phaser from "./src/Phaser.js";
 import initUI from "./src/ui/initUI.js";
 
 import "./style.css";

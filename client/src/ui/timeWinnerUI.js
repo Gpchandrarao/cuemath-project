@@ -1,14 +1,8 @@
 export default function timeWinnerUI(isWinner) {
-  if (isWinner) {
-    return `
-        <div class="modal">
-        <h1>You Won On Time !</h1>
-        `;
-  }
-  return `
-    <div class="modal">
-    <h1>
-    You Lost On Time
-    </h1>
-    `;
+  const modal = document.createElement("div");
+  modal.classList.add("modal");
+  modal.innerHTML = isWinner
+    ? `<h1>You Won On Time !</h1>`
+    : `<h1>You Lost On Time !</h1>`;
+  return modal;
 }

@@ -5,10 +5,15 @@ function preload() {
   this.load.image("validmove", "assets/validmove.png");
   this.load.image("playeravatar", "assets/player-avatar.png");
   this.load.image("opponentavatar", "assets/opponent-avatar.png");
+  // this.load.plugin(
+  //   "rexCircularProgressPlugin",
+  //   "https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexcircularprogressplugin.min.js",
+  //   true
+  // );
+  this.load.plugin(
+    "rexcircularprogressplugin",
+    "https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexcircularprogressplugin.min.js",
+    true
+  );
 }
-this.load.plugin(
-  "rexCircularProgressPlugin",
-  "https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexcircularprogressplugin.min.js",
-  true
-);
 export default preload;
